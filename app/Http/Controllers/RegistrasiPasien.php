@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 
 class RegistrasiPasien extends Controller
@@ -16,10 +17,14 @@ class RegistrasiPasien extends Controller
 
         $status_pengobatan = $request->input('status-pengobatan-pasien-registrasi') === "true" ? true : false;
 
+        $dateString = $request->input('tanggal-lahir-pasien-registrasi'); // Example date string
+        $dateTime = DateTime::createFromFormat('m/d/Y', $dateString); // Create a DateTime object from the string
+        $formattedDateString = $dateTime->format('Y-m-d');
+
         User::create([
             'id' => $nomor_pasien,
             'nama' => $request->input('nama-pasien-registrasi'),
-            'tanggal_lahir' => $request->input('tanggal-lahir-pasien-registrasi'),
+            'tanggal_lahir' => $formattedDateString,
             'gender' => $request->input('gender-pasien-registrasi'),
             'pekerjaan' => $request->input('pekerjaan-pasien-registrasi'),
             'nomor_telepon' => $request->input('nomor-hp-registrasi'),

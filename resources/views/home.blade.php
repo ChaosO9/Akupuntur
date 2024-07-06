@@ -41,6 +41,19 @@
         .appointment .php-email-form select::placeholder {
             color: rgba(0, 0, 0, 0.8);
         }
+
+        .appointment .php-email-form input:disabled,
+        .appointment .php-email-form textarea:disabled,
+        .appointment .php-email-form select:disabled {
+            background-color: #cccccc;
+            /* Light grey background for disabled elements */
+            color: #666666;
+            /* Darker grey for text color */
+        }
+
+        .appointment .php-email-form button[type="submit"]:disabled {
+            background: color-mix(in srgb, var(--accent-color) 90%, gray 45%);
+        }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
@@ -401,116 +414,7 @@
         </section><!-- /Services Section --> --}}
 
         <!-- Appointment Section -->
-        <section id="appointment" class="appointment section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Jadwalkan Sesi Akupuntur</h2>
-                <p>Belum pernah mendaftar? Silahkan mendaftar terlebih dahulu <a class="link-opacity-100"
-                        href="#registration">di sini</a></p>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <div class="container"></div>
-                            <div class="row g-1">
-                                <div class="col-md-8">
-                                    <input type="text" name="nomor-kartu pasien" class="form-control ml-2"
-                                        id="nomor-kartu-pasien" placeholder="Nomor Kartu Pasien" required="">
-                                </div>
-                                <div class=" col-md-4 text-center col-auto"><button type="button"
-                                        class="btn btn-primary">Cek
-                                        Pasien</button></div>
-                            </div>
-                        </div>
-                        {{-- <div class="col-md-2 form-group">
-                            <div class="text-center"><button type="button" class="btn btn-primary">Cek
-                                    Pasien</button></div>
-                        </div> --}}
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="text" class="form-control" name="nama-pasien" id="nama-pasien"
-                                placeholder="Nama Anda" required="">
-                        </div>
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="tel" class="form-control" name="nomor-hp" id="nomor-hp"
-                                placeholder="Nomor HP Anda" required="">
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <div class="col-md-3 form-group mt-3">
-                            <select type="time" name="gender-pasien" class="form-select" id="gender-pasien"
-                                placeholder="Appointment Hour" required="">
-                                <option selected>Gender Anda</option>
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 form-group mt-3">
-                            <input type="text" name="pekerjaan-pasien" class="form-control" id="pekerjaan-pasien"
-                                placeholder="Pekerjaan Anda" required="">
-                        </div>
-                        <div class="col-md-3 form-group mt-3">
-                            <div class="container"></div>
-                            <div class="row g-1 align-items-center">
-                                <div class=" col-md-4 text-center align-text-bottom">
-                                    Tanggal Lahir
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="date" name="tanggal-lahir-pasien" class="form-control datepicker"
-                                        id="tanggal-lahir-pasien" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 form-group mt-3">
-                            <select name="status-pengobatan-pasien" id="status-pengobatan-pasien" class="form-select"
-                                required="">
-                                <option selected>Melakukan Pengobatan/Tidak ?</option>
-                                <option value="Melakukan Pengobatan">Melakukan Pengobatan</option>
-                                <option value="Tidak Melakukan Pengobatan">Tidak Melakukan Pengobatan</option>
-                            </select>
-                        </div>
-                    </div>
-                    <hr class="hr hr-blurry" />
-                    <div class="row">
-                        <div class="col-md-6 form-group mt-3">
-                            <div class="container"></div>
-                            <div class="row g-1 align-items-center">
-                                <div class=" col-md-2 text-center align-text-bottom">
-                                    Tanggal Akupuntur
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="date" name="tanggal-akupuntur-pasien" class="form-control"
-                                        id="tanggal-akupuntur-pasien" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 form-group mt-3">
-                            <select name="jam-akupuntur-pasien" id="jam-akupuntur-pasien" class="form-select"
-                                required="">
-                                <option selected>Pilih Jam Pelayanan</option>
-                                <option value="Melakukan Pengobatan">Melakukan Pengobatan</option>
-                                <option value="Tidak Melakukan Pengobatan">Tidak Melakukan Pengobatan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="keluhan" id="keluhan" rows="5" placeholder="Keluhan (Opsional)"></textarea>
-                    </div>
-                    <div class="mt-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-                        <div class="text-center"><button type="submit">Reservasi Tanggal</button></div>
-                    </div>
-                </form>
-
-            </div>
-
-        </section><!-- /Appointment Section -->
+        <livewire:form-daftar-akupuntur /><!-- /Appointment Section -->
 
         <!-- Patient Registration Section -->
         <section id="registration" class="appointment section light-background">
@@ -594,6 +498,16 @@
                     })
                 </script>
             @endif
+            {{-- @if (isset($error_cari_user))
+                <script>
+                    swal({
+                        title: 'Gagal',
+                        text: '{{ $error_cari_user }}',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    })
+                </script>
+            @endif --}}
             </div>
 
         </section><!-- /Patient Registration Section -->
@@ -1342,6 +1256,7 @@
 
     </footer>
 
+    @livewireScripts
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -1367,19 +1282,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(function() {
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
-
-            today = dd + '-' + mm + '-' + yyyy;
-
             $(".datepicker1").datepicker({
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom",
-                format: "dd-mm-yyyy"
-            }).datepicker('setDate', today);
+                format: "dd/mm/yyyy"
+            });
+
+            $(".datepicker2").datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                orientation: "bottom",
+                format: "dd/mm/yyyy",
+                startDate: new Date()
+            });
         });
     </script> >
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
