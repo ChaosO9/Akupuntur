@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('nama');
-            $table->date('tanggal_lahir'); // Assuming 'Tanggal Lahir' is optional
-            $table->enum('gender', ['Pria', 'Wanita']); // Assuming 'Gender' is a predefined list
-            $table->string('pekerjaan'); // Assuming 'Pekerjaan' refers to a string field for the job title
-            $table->string('nomor_telepon'); // Assuming 'Nomor Telepon' refers to a string field for the phone number
-            $table->boolean('sedang_melakukan_pengobatan')->default(false); // Assuming 'Sedang melakukan pengobatan/tidak?' is a boolean indicating treatment status
+            $table->id();
+            $table->string('name');
+            $table->string('username');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 

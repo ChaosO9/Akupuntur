@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class RegistrasiPasien extends Controller
         $dateTime = DateTime::createFromFormat('m/d/Y', $dateString); // Create a DateTime object from the string
         $formattedDateString = $dateTime->format('Y-m-d');
 
-        User::create([
+        Pasien::create([
             'id' => $nomor_pasien,
             'nama' => $request->input('nama-pasien-registrasi'),
             'tanggal_lahir' => $formattedDateString,

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <title>Login</title>
+    @vite('resources/js/app.js')
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 
         <div class="form-box login">
             <h2>Login Admin</h2>
-            <form action="{{ route('login.submit.admin') }}" method="POST">
+            <form action="{{ route('admin.login.submit') }}" method="POST">
                 @csrf
                 @if (session('success'))
                     <p class="">
@@ -27,9 +28,10 @@
                     <p style="color: red">{{ $error }}</p>
                 @endforeach
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                    <input type="email" id="email" name="email" required>
-                    <label>Email</label>
+                    {{-- <span class="icon"><i class="fa-solid fa-envelope"></i></span> --}}
+                    <span class="icon"><i class="fa-solid fa-id-badge"></i></span>
+                    <input type="text" id="username" name="username" required>
+                    <label>Username Admin</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"> <i class="fa-solid fa-lock"></i></span>
@@ -49,7 +51,7 @@
 
         <div class="form-box register">
             <h2>Registrasi</h2>
-            <form action="{{ route('login.register') }}" method="POST">
+            <form action="" method="POST">
                 @csrf
                 @foreach ($errors->all() as $error)
                     <p style="color: red">{{ $error }}</p>
@@ -79,9 +81,9 @@
                     <input type="password" name="password_register2" required>
                     <label>Konfirmasi Password</label>
                 </div>
-                {{-- <div class="remember-forgot">
+                <div class="remember-forgot">
                     <label><input type="checkbox">Saya setuju dengan ketentuan berlaku</label>
-                </div> --}}
+                </div>
                 <button type="submit" class="btn">Register</button>
                 <div class="login-register">
                     <p>Sudah punya akun? <a href="#" class="login-link">Login</a></p>

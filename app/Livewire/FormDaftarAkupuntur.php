@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Http\Controllers\CekKetersediaanJamPelayanan;
 use App\Models\JadwalAkupuntur;
+use App\Models\Pasien;
 use App\Models\User;
 use DateTime;
 use Illuminate\Support\Facades\Log;
@@ -12,6 +13,15 @@ use Livewire\Component;
 
 class FormDaftarAkupuntur extends Component
 {
+    public Pasien $pasien;
+    public function __construct()
+    {
+        $this->pasien = new Pasien(); // Initialize with a new User instance
+    }
+
+    #[Locked]
+    public $user;
+
     public $kartu_pasien = '';
     public $nama = '';
     public $nomor_telepon = '';
@@ -19,9 +29,11 @@ class FormDaftarAkupuntur extends Component
     public $pekerjaan = '';
     public $tanggal_lahir = '';
     public $sedang_melakukan_pengobatan = '';
+    public $keluhan = null;
 
     public $tanggal_akupuntur = null;
     public $jam_pelayanan_tersedia = '';
+    public $jamLayananTersedia;
 
     public $modeButton = 'Cek Pasien';
     public $error_cari_user = null;
@@ -32,21 +44,21 @@ class FormDaftarAkupuntur extends Component
 
     public function getPasien()
     {
-        $user = User::find($this->kartu_pasien);
+        $this->user = $this->pasien::find($this->kartu_pasien);
 
-        if ($user) {
+        if ($this->user) {
             session()->flash('sukses_cari_user', 'Silahkan ubah data Anda jika perlu!');
+            $this->user->id = $this->kartu_pasien;
             $this->modeButton = 'Ganti Pasien';
             $this->tanggal_akupuntur = date('Y-m-d');
             $this->updateJamLayananTersedia();
 
-
-            $this->nama = $user->nama;
-            $this->nomor_telepon = $user->nomor_telepon;
-            $this->gender = $user->gender;
-            $this->pekerjaan = $user->pekerjaan;
-            $this->tanggal_lahir = $user->tanggal_lahir;
-            $this->sedang_melakukan_pengobatan = $user->sedang_melakukan_pengobatan;
+            $this->nama = $this->user->nama;
+            $this->nomor_telepon = $this->user->nomor_telepon;
+            $this->gender = $this->user->gender;
+            $this->pekerjaan = $this->user->pekerjaan;
+            $this->tanggal_lahir = $this->user->tanggal_lahir;
+            $this->sedang_melakukan_pengobatan = $this->user->sedang_melakukan_pengobatan;
         } else {
             // abort(404);
             session()->flash('error_cari_user', 'Gagal menemukan pasien');
@@ -70,7 +82,29 @@ class FormDaftarAkupuntur extends Component
 
         $jamLayananTersedia = array_diff($jamLayanan, $jamLayananSudahDibooking);
 
-        $this->jam_pelayanan_tersedia = $jamLayananTersedia;
+        $this->jamLayananTersedia = $jamLayananTersedia;
+    }
+
+    public function jadwalkanAkupuntur()
+    {
+        session()->flash('sukses_cari_user', 'Sukses jadwalkan akupuntur Anda pada: ' . 'Tanggal: ' . $this->tanggal_akupuntur . ' & Jam: ' . $this->jam_pelayanan_tersedia);
+
+        $this->user->nama = $this->nama;
+        $this->user->tanggal_lahir = $this->tanggal_lahir;
+        $this->user->gender = $this->gender;
+        $this->user->pekerjaan = $this->pekerjaan;
+        $this->user->nomor_telepon = $this->nomor_telepon;
+        $this->user->sedang_melakukan_pengobatan = $this->sedang_melakukan_pengobatan;
+        $this->user->save();
+
+        JadwalAkupuntur::create([
+            'nomor_kartu_pasien' => $this->user->id,
+            'tanggal_melakukan_terapi' => $this->tanggal_akupuntur,
+            'jam_pelayanan' => $this->jam_pelayanan_tersedia,
+            'keluhan' => ($this->keluhan == null ? '' : $this->keluhan)
+        ]);
+
+        return redirect()->route('reservasi.jadwal.akupuntur.pasien')->with('message', 'Sukses jadwalkan akupuntur Anda pada:\n' . 'Tanggal: ' . $this->tanggal_akupuntur . '\nJam: ' . $this->jam_pelayanan_tersedia);
     }
 
     public function render()

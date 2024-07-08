@@ -29,6 +29,11 @@
 
     <!-- Main CSS File -->
     <link href="{{ url('assets/css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
     @vite('resources/js/app.js')
 
     <style>
@@ -77,7 +82,7 @@
             <div class="container d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
-                            href="mailto:contact@example.com">sri_ajeng@example.com</a></i>
+                            href="mailto:ahealthyacupuncture@gmail.com">ahealthyacupuncture@gmail.com</a></i>
                     <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 857-0521-4842</span></i>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center">
@@ -95,7 +100,7 @@
                 <a href="index.html" class="logo d-flex align-items-center me-auto">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename">Akupuntur</h1>
+                    <h1 class="sitename">Healthy Acupuncture</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
@@ -149,24 +154,25 @@
             <div class="container position-relative">
 
                 <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                    <h2>SELAMAT DATANG DI LAYANAN AKUPUNTUR</h2>
-                    <p>We are team of talented designers making websites with Bootstrap</p>
+                    <h2>SELAMAT DATANG DI Healthy Acupuncture</h2>
+                    <h3>BY PUSKESMAS SALOK API DARAT, SAMBOJA, KUKAR</h3>
                 </div><!-- End Welcome -->
 
                 <div class="content row gy-4">
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
                             <h3>Kenapa Harus Akupuntur?</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-                                optio ad corporis.
+                            <p class="text-justify">
+                                Akupunktur yakni sebuah pengobatan dengan menggunakan tusuk jarum yang sudah diakui baik
+                                dalam pengobatan indonesia maupun luar negeri. Akupunktur dapat mengatasi berbagai
+                                penyakit dan diakui keandalannya dalam mengatasi rasa nyeri, baik akut maupun kronis
+                                yang tidak teratasi dengan pengobatan modern. Kelebihan terapi menggunakan tusuk jarum
+                                adalah langsung merasakan adanya perubahan setelah beberapa kali dilakukan terapi
                             </p>
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <a href="#about" class="more-btn"><span>Learn More</span> <i
                                         class="bi bi-chevron-right"></i></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div><!-- End Why Box -->
 
@@ -176,28 +182,30 @@
 
                                 <div class="col-xl-4 d-flex align-items-stretch">
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                                        <i class="bi bi-clipboard-data"></i>
-                                        <h4>Corporis voluptates officia eiusmod</h4>
-                                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-                                            aliquip</p>
+                                        {{-- <i class="bi bi-clipboard-data"></i> --}}
+                                        <i class="fa-sharp fa-solid fa-badge-check"></i>
+                                        <h4>Telah Diakui</h4>
+                                        <p>Akupuntur yang sudah diakui baik dalam maupun luar negeri
+                                        </p>
                                     </div>
                                 </div><!-- End Icon Box -->
 
                                 <div class="col-xl-4 d-flex align-items-stretch">
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
-                                        <i class="bi bi-gem"></i>
-                                        <h4>Ullamco laboris ladore pan</h4>
-                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                            deserunt</p>
+                                        {{-- <i class="bi bi-gem"></i> --}}
+                                        <i class="fa-solid fa-shield-check"></i>
+                                        <h4>Terbukti Aman</h4>
+                                        <p>Telah terbukti aman dan efektif secara bertahap
+                                        </p>
                                     </div>
                                 </div><!-- End Icon Box -->
 
                                 <div class="col-xl-4 d-flex align-items-stretch">
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
-                                        <i class="bi bi-inboxes"></i>
-                                        <h4>Labore consequatur incidid dolore</h4>
-                                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
-                                            facere</p>
+                                        {{-- <i class="bi bi-inboxes"></i> --}}
+                                        <i class="fa-solid fa-heart-circle-check"></i>
+                                        <h4>Banyak Manfaat</h4>
+                                        <p>Dapat merangsang metabolisme, sirkulasi dan keseimbangan hormon tubuh</p>
                                     </div>
                                 </div><!-- End Icon Box -->
 
@@ -459,7 +467,7 @@
                         <div class="col-md-4 form-group mt-3">
                             <select type="time" name="gender-pasien-registrasi" class="form-select"
                                 id="gender-pasien-registrasi" placeholder="Appointment Hour" required="">
-                                <option selected>Gender Anda</option>
+                                <option value="">Gender Anda</option>
                                 <option value="Pria">Pria</option>
                                 <option value="Wanita">Wanita</option>
                             </select>
@@ -473,7 +481,7 @@
                         <div class="col-md-4 form-group mt-3">
                             <select name="status-pengobatan-pasien-registrasi"
                                 id="status-pengobatan-pasien-registrasi" class="form-select" required="">
-                                <option selected>Melakukan Pengobatan/Tidak ?</option>
+                                <option value="">Melakukan Pengobatan/Tidak ?</option>
                                 <option value=true>Melakukan Pengobatan</option>
                                 <option value=false>Tidak Melakukan Pengobatan</option>
                             </select>
@@ -635,7 +643,7 @@
         </section><!-- /Departments Section --> --}}
 
         <!-- Doctors Section -->
-        <section id="doctors" class="doctors section">
+        {{-- <section id="doctors" class="doctors section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
@@ -723,10 +731,10 @@
 
             </div>
 
-        </section><!-- /Doctors Section -->
+        </section><!-- /Doctors Section --> --}}
 
         <!-- Faq Section -->
-        <section id="faq" class="faq section light-background">
+        {{-- <section id="faq" class="faq section light-background">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
@@ -814,7 +822,7 @@
 
             </div>
 
-        </section><!-- /Faq Section -->
+        </section><!-- /Faq Section --> --}}
 
         <!-- Testimonials Section -->
         {{-- <section id="testimonials" class="testimonials section">
@@ -1086,13 +1094,13 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <h2>Kontak</h2>
+                <p>Hubungi kontak dibawah untuk informasi lebih lanjut</p>
             </div><!-- End Section Title -->
 
             <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
                 <iframe style="border:0; width: 100%; height: 270px;"
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtQdCKUA91HOI2QRMhKMNrZAxOQcOXWXM&q=Puskesmas+Salok+Api+Darat"
                     frameborder="0" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div><!-- End Google Maps -->
@@ -1105,24 +1113,24 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
-                                <h3>Location</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <h3>Lokasi</h3>
+                                <p>Salok Api Darat, Samboja, Kutai Kartanegara, Kalimantan Timur 75271</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
+                                <h3>Telepon Kami</h3>
+                                <p>+62 857-0521-4842</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
+                                <h3>Email Kami</h3>
+                                <p>ahealthyacupuncture@gmail.com</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -1157,7 +1165,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit">Kirim Pesan</button>
                                 </div>
 
                             </div>
@@ -1178,13 +1186,13 @@
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">Akupuntur</span>
+                        <span class="sitename">Healthy Acupuncture</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>Salok Api Darat, Samboja</p>
+                        <p>Kutai Kartanegara, Kalimantan Timur 75271</p>
+                        <p class="mt-3"><strong>Ponsel:</strong> <span>+62 857-0521-4842</span></p>
+                        <p><strong>Email:</strong> <span>ahealthyacupuncture@gmail.com</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -1242,7 +1250,7 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Akupuntur</strong> <span>All Rights
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Healthy Acupuncture</strong> <span>All Rights
                     Reserved</span>
             </p>
             <div class="credits">

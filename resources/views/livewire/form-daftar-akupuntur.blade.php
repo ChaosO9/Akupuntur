@@ -33,7 +33,8 @@
         @endif
 
         <div class="container" {{ $kartu_pasien === '' ? 'data-aos="fade-up" data-aos-delay="100"' : '' }}>
-            <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+            <form wire:submit='jadwalkanAkupuntur' method="POST" role="form" class="php-email-form">
+                @csrf
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <div class="container"></div>
@@ -151,7 +152,7 @@
                                     $today->gt(\Carbon\Carbon::parse($tanggal_akupuntur))) {{ 'disabled' }} @endif>
                             <option disabled selected value="">Pilih Jam Pelayanan</option>
                             @if ($tanggal_akupuntur !== null)
-                                @foreach ($jam_pelayanan_tersedia as $jam_pelayanan)
+                                @foreach ($jamLayananTersedia as $jam_pelayanan)
                                     <option value="{{ $jam_pelayanan }}">{{ $jam_pelayanan }}
                                     </option>
                                 @endforeach
@@ -161,8 +162,8 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <textarea class="form-control" name="keluhan" id="keluhan" rows="5" placeholder="Keluhan (Opsional)"
-                        @if ($modeButton === 'Cek Pasien') {{ 'disabled' }} @endif></textarea>
+                    <textarea wire:model='keluhan' class="form-control" name="keluhan" id="keluhan" rows="5"
+                        placeholder="Keluhan (Opsional)" @if ($modeButton === 'Cek Pasien') {{ 'disabled' }} @endif></textarea>
                 </div>
                 <div class="mt-3">
                     <div class="loading">Loading</div>
@@ -173,25 +174,6 @@
                             Tanggal</button></div>
                 </div>
             </form>
-
         </div>
-
     </section>
 </div>
-
-{{-- @script
-    <script>
-        document.addEventListener('livewire:load', function() {
-            $('.datepicker2').on('changeDate', function(e) {
-                let formattedDate = new Date(e.date).toLocaleDateString("en-US", {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit'
-                });
-
-                console.log(formattedDate);
-                window.livewire.emit('updateJamLayananTersedia2', formattedDate);
-            });
-        });
-    </script>
-@endscript --}}

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('jadwal_akupuntur', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_kartu_pasien', 50);
+            $table->string('nomor_kartu_pasien');
+            $table->foreign('nomor_kartu_pasien')->references('id')->on('pasien')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tanggal_melakukan_terapi');
             $table->text('keluhan')->nullable();
-            $table->time('jam_pelayanan');
+            $table->string('jam_pelayanan', 5);
             $table->timestamps();
         });
     }
