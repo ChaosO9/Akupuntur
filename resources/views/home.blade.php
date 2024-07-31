@@ -1301,8 +1301,8 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom",
-                format: "dd/mm/yyyy",
-                startDate: new Date()
+                format: "dd-mm-yyyy",
+                endDate: new Date()
             });
         });
     </script> >

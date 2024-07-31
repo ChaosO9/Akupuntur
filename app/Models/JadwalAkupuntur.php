@@ -15,7 +15,8 @@ class JadwalAkupuntur extends Model
         'nomor_kartu_pasien',
         'tanggal_melakukan_terapi',
         'jam_pelayanan',
-        'keluhan'
+        'keluhan',
+        'status'
     ];
 
     public function users()

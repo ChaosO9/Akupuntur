@@ -11,6 +11,7 @@
 <body>
     <h1>Forbidden</h1>
     <p>You do not have permission to access this page.</p>
+    <a href="{{ route('admin.login') }}">Log in as Admin here!</a>
 </body>
 
 </html>

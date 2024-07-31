@@ -11,7 +11,7 @@ class RegistrasiPasien extends Controller
 {
     public function registrasiPasien(Request $request)
     {
-        $timestamp = date('YmdHis');
+        $timestamp = date('Ymd');
         $randomNumber = rand(100, 999);
         $prefix = 'AKP';
         $nomor_pasien = strtoupper($prefix . $timestamp . str_pad($randomNumber, 3, '0', STR_PAD_LEFT));

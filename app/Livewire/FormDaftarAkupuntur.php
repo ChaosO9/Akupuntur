@@ -87,21 +87,33 @@ class FormDaftarAkupuntur extends Component
 
     public function jadwalkanAkupuntur()
     {
-        session()->flash('sukses_cari_user', 'Sukses jadwalkan akupuntur Anda pada: ' . 'Tanggal: ' . $this->tanggal_akupuntur . ' & Jam: ' . $this->jam_pelayanan_tersedia);
+        $pasien_data_baru = Pasien::find($this->user->id)->update([
+            "nama" => $this->nama,
+            "tanggal_lahir" => $this->tanggal_lahir,
+            "gender" => $this->gender,
+            "pekerjaan" => $this->pekerjaan,
+            "nomor_telepon" => $this->nomor_telepon,
+            "sedang_melakukan_pengobatan" => $this->sedang_melakukan_pengobatan,
+        ]);
 
-        $this->user->nama = $this->nama;
-        $this->user->tanggal_lahir = $this->tanggal_lahir;
-        $this->user->gender = $this->gender;
-        $this->user->pekerjaan = $this->pekerjaan;
-        $this->user->nomor_telepon = $this->nomor_telepon;
-        $this->user->sedang_melakukan_pengobatan = $this->sedang_melakukan_pengobatan;
-        $this->user->save();
+        // $data_baru = [
+        //     "nama" => $this->nama,
+        //     "tanggal_lahir" => $this->tanggal_lahir,
+        //     "gender" => $this->gender,
+        //     "pekerjaan" => $this->pekerjaan,
+        //     "nomor_telepon" => $this->nomor_telepon,
+        //     "sedang_melakukan_pengobatan" => $this->sedang_melakukan_pengobatan,
+        // ];
+
+        // dd($data_baru);
+        // exit();
 
         JadwalAkupuntur::create([
             'nomor_kartu_pasien' => $this->user->id,
             'tanggal_melakukan_terapi' => $this->tanggal_akupuntur,
             'jam_pelayanan' => $this->jam_pelayanan_tersedia,
-            'keluhan' => ($this->keluhan == null ? '' : $this->keluhan)
+            'keluhan' => ($this->keluhan == null ? '' : $this->keluhan),
+            'status' => 'Belum Dilayani'
         ]);
 
         return redirect()->route('reservasi.jadwal.akupuntur.pasien')->with('message', 'Sukses jadwalkan akupuntur Anda pada:\n' . 'Tanggal: ' . $this->tanggal_akupuntur . '\nJam: ' . $this->jam_pelayanan_tersedia);

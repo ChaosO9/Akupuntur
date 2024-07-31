@@ -54,20 +54,20 @@
                                 Pasien</button></div>
                     </div> --}}
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="nama-pasien" id="nama-pasien"
+                        <input wire:model="nama" type="text" class="form-control" name="nama-pasien" id="nama-pasien"
                             placeholder="Nama Anda" required="" value="{{ $nama }}"
                             @if ($nama === '') {{ 'disabled' }} @endif>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="tel" class="form-control" name="nomor-hp" id="nomor-hp"
-                            placeholder="Nomor HP Anda" required="" value="{{ $nomor_telepon }}"
+                        <input wire:model="nomor_telepon" type="tel" class="form-control" name="nomor-hp"
+                            id="nomor-hp" placeholder="Nomor HP Anda" required="" value="{{ $nomor_telepon }}"
                             @if ($nomor_telepon === '') {{ 'disabled' }} @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
                     <div class="col-md-3 form-group mt-3">
-                        <select type="time" name="gender-pasien" class="form-select" id="gender-pasien"
-                            placeholder="Appointment Hour" required=""
+                        <select wire:model="gender" type="time" name="gender-pasien" class="form-select"
+                            id="gender-pasien" placeholder="Appointment Hour" required=""
                             @if ($gender === '') {{ 'disabled' }} @endif>
                             <option
                                 @empty($gender)
@@ -81,9 +81,9 @@
                         </select>
                     </div>
                     <div class="col-md-3 form-group mt-3">
-                        <input type="text" name="pekerjaan-pasien" class="form-control" id="pekerjaan-pasien"
-                            placeholder="Pekerjaan Anda" required="" value="{{ $pekerjaan }}"
-                            @if ($pekerjaan === '') {{ 'disabled' }} @endif>
+                        <input wire:model="pekerjaan" type="text" name="pekerjaan-pasien" class="form-control"
+                            id="pekerjaan-pasien" placeholder="Pekerjaan Anda" required=""
+                            value="{{ $pekerjaan }}" @if ($pekerjaan === '') {{ 'disabled' }} @endif>
                     </div>
                     <div class="col-md-3 form-group mt-3">
                         <div class="container"></div>
@@ -92,15 +92,27 @@
                                 Tanggal Lahir
                             </div>
                             <div class="col-md-8">
-                                <input type="text" name="tanggal-lahir-pasien" class="form-control datepicker2"
-                                    id="tanggal-lahir-pasien" required="" value="{{ $tanggal_lahir }}"
+                                <input wire:model.live="tanggal_lahir" type="date" name="tanggal-lahir-pasien"
+                                    class="form-control" id="tanggal-lahir-pasien" required=""
+                                    value="{{ $tanggal_lahir }}"
                                     @if ($tanggal_lahir === '') {{ 'disabled' }} @endif>
                             </div>
+                            @php
+                                $today = \Carbon\Carbon::now()->startOfDay();
+                                $disableSubmitButton = false;
+                            @endphp
+                            @if ($today->lt(\Carbon\Carbon::parse($tanggal_lahir)))
+                                @php
+                                    $disableSubmitButton = true;
+                                @endphp
+                                <span class="text-danger">Tanggal yang anda masukkan tidak valid!</span>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-3 form-group mt-3">
-                        <select name="status-pengobatan-pasien" id="status-pengobatan-pasien" class="form-select"
-                            required="" @if ($sedang_melakukan_pengobatan === '') {{ 'disabled' }} @endif>
+                        <select wire:model="sedang_melakukan_pengobatan" name="status-pengobatan-pasien"
+                            id="status-pengobatan-pasien" class="form-select" required=""
+                            @if ($sedang_melakukan_pengobatan === '') {{ 'disabled' }} @endif>
                             <option @if ($sedang_melakukan_pengobatan === '') {{ 'selected' }} @endif>
                                 Melakukan Pengobatan/Tidak ?</option>
                             <option value=true @if ($sedang_melakukan_pengobatan === 1) {{ 'selected' }} @endif>
@@ -131,7 +143,6 @@
                             @endphp
                             @if ($modeButton === 'Ganti Pasien')
                                 @php
-                                    $today = \Carbon\Carbon::now()->startOfDay();
                                     $selectedDate = \Carbon\Carbon::parse($tanggal_akupuntur);
                                 @endphp
                                 @if ($today->gt(\Carbon\Carbon::parse($tanggal_akupuntur)))
@@ -170,7 +181,7 @@
                     <div class="error-message"></div>
                     <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                     <div class="text-center"><button type="submit"
-                            {{ $modeButton === 'Cek Pasien' || $disableWaktuLayanan ? 'disabled' : '' }}>Reservasi
+                            {{ $modeButton === 'Cek Pasien' || $disableWaktuLayanan || $disableSubmitButton ? 'disabled' : '' }}>Reservasi
                             Tanggal</button></div>
                 </div>
             </form>

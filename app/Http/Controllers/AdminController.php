@@ -23,6 +23,15 @@ class AdminController extends Controller
         return view('admin.index', compact('pasien', 'jadwal'));
     }
 
+    public function halamanEditJadwalAkupuntur($id)
+    {
+        $jadwal = JadwalAkupuntur::find($id);
+        $jadwal->nama = $jadwal->users()->pluck('nama')->first();
+        $jadwal->gender = $jadwal->users()->pluck('gender')->first();
+        $jadwal->nomor_telepon = $jadwal->users()->pluck('nomor_telepon')->first();
+        return view('admin.edit-jadwal-akupuntur', compact('jadwal'));
+    }
+
     public function halamanDataPasien()
     {
         $pasien = Pasien::all();
@@ -34,9 +43,9 @@ class AdminController extends Controller
         $jadwal = DB::table('jadwal_akupuntur')->get();
         $jadwalWithNama = $jadwal->map(function ($item) {
             $jadwal = JadwalAkupuntur::find($item->id);
-            $item->nama = $jadwal->users()->pluck('nama')->all();
-            $item->gender = $jadwal->users()->pluck('gender')->all();
-            $item->nomor_telepon = $jadwal->users()->pluck('nomor_telepon')->all();
+            $item->nama = $jadwal->users()->pluck('nama')->first();
+            $item->gender = $jadwal->users()->pluck('gender')->first();
+            $item->nomor_telepon = $jadwal->users()->pluck('nomor_telepon')->first();
             return $item;
         });
 
@@ -50,11 +59,23 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function hapusDataJadwalAkupuntur(Request $request)
+    public function hapusDataJadwalAkupuntur($id)
     {
-        $jadwal = JadwalAkupuntur::find($request->id);
+        $jadwal = JadwalAkupuntur::find($id);
         $jadwal->delete();
         return redirect()->back();
+    }
+
+    public function editDataJadwalAkupuntur(Request $request, $id)
+    {
+        $jadwal = JadwalAkupuntur::find($id);
+        $jadwal->update([
+            'tanggal_melakukan_terapi' => $request->tanggal_akupuntur,
+            'jam_pelayanan' => $request->jam_akupuntur_pasien,
+            'keluhan' => ($request->keluhan == null ? '' : $request->keluhan),
+            'status' => $request->status_jadwal
+        ]);
+        return redirect()->route('admin.data.jadwal.akupuntur');
     }
 
     public function loginAdminSubmit(Request $request)

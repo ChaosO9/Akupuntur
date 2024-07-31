@@ -22,7 +22,9 @@ Route::controller(AdminController::class)->prefix('admin')->group(function () {
         Route::get('data-pasien', 'halamanDataPasien')->name('admin.data.pasien');
         Route::post('data-pasien/hapus', 'dataPasienHapus')->name('admin.data.pasien.hapus');
         Route::get('jadwal-akupuntur', 'halamanDataJadwalAkupuntur')->name('admin.data.jadwal.akupuntur');
-        Route::post('jadwal-akupuntur', 'hapusDataJadwalAkupuntur')->name('admin.data.jadwal.akupuntur.hapus');
+        Route::get('jadwal-akupuntur/{id}/hapus', 'hapusDataJadwalAkupuntur')->name('admin.data.jadwal.akupuntur.hapus');
+        Route::get('jadwal-akupuntur/{id}/edit', 'halamanEditJadwalAkupuntur')->name('admin.jadwal.akupuntur.edit');
+        Route::post('jadwal-akupuntur/{id}/edit', 'editDataJadwalAkupuntur')->name('admin.jadwal.akupuntur.edit.simpan');
     });
 });
 
