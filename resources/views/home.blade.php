@@ -481,7 +481,7 @@
                         <div class="col-md-4 form-group mt-3">
                             <select name="status-pengobatan-pasien-registrasi"
                                 id="status-pengobatan-pasien-registrasi" class="form-select" required="">
-                                <option value="">Melakukan Pengobatan/Tidak ?</option>
+                                <option value="">Sedang dalam pengobatan medis ?</option>
                                 <option value=true>Melakukan Pengobatan</option>
                                 <option value=false>Tidak Melakukan Pengobatan</option>
                             </select>

@@ -114,7 +114,7 @@
                             id="status-pengobatan-pasien" class="form-select" required=""
                             @if ($sedang_melakukan_pengobatan === '') {{ 'disabled' }} @endif>
                             <option @if ($sedang_melakukan_pengobatan === '') {{ 'selected' }} @endif>
-                                Melakukan Pengobatan/Tidak ?</option>
+                                Sedang dalam pengobatan medis ?</option>
                             <option value=true @if ($sedang_melakukan_pengobatan === 1) {{ 'selected' }} @endif>
                                 Melakukan
                                 Pengobatan</option>
